@@ -1,0 +1,112 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  /* trust-anchored sky-blue + aspirational violet + warm CTA */
+  --color-sky: #4F8FF0;        /* primary trust blue */
+  --color-sky-soft: #DCEAFB;   /* soft blue surface */
+  --color-violet: #7C6CF0;     /* aspirational accent */
+  --color-violet-soft: #ECE9FE;
+  --color-coral: #FF7A59;      /* warm CTA, draws the eye */
+  --color-emerald: #16A974;    /* growth/salary only */
+
+  /* light theme neutrals */
+  --color-porcelain: #FBFCFE;  /* page bg */
+  --color-surface: #FFFFFF;    /* cards */
+  --color-mist: #F1F5FB;       /* alt section bg */
+  --color-ink: #16203A;        /* deep ink-blue text */
+  --color-ink2: #44506B;
+  --color-ink3: #8A95AC;
+  --color-line: #E6ECF5;
+
+  --font-sans: var(--font-sans-i), system-ui, sans-serif;
+  --font-display: var(--font-display-i), Georgia, serif;
+  --font-mono: var(--font-mono-i), "SF Mono", ui-monospace, monospace;
+}
+
+/* ---- THEME TOKENS via CSS vars so dark mode swaps cleanly ---- */
+:root {
+  --bg: #FBFCFE;
+  --bg-alt: #F1F5FB;
+  --card: #FFFFFF;
+  --card-alt: #F7FAFE;
+  --text: #16203A;
+  --text-2: #44506B;
+  --text-3: #8A95AC;
+  --border: #E6ECF5;
+  --hero-grad-1: #EAF2FE;
+  --hero-grad-2: #F3EEFE;
+  --hero-grad-3: #FBFCFE;
+}
+.dark {
+  --bg: #0E1422;
+  --bg-alt: #131B2E;
+  --card: #18223A;
+  --card-alt: #1C2742;
+  --text: #EDF1F8;
+  --text-2: #AEB8CC;
+  --text-3: #6E7A93;
+  --border: #25304B;
+  --hero-grad-1: #16213C;
+  --hero-grad-2: #1B1A38;
+  --hero-grad-3: #0E1422;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; background: var(--bg); }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  letter-spacing: -0.011em;
+  line-height: 1.5;
+  transition: background .4s ease, color .4s ease;
+}
+.mono { font-family: var(--font-mono); font-feature-settings: "tnum"; letter-spacing: 0; }
+.display { font-family: var(--font-display); }
+::selection { background: var(--color-violet); color: #fff; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+}
+.noscroll::-webkit-scrollbar { display: none; }
+.noscroll { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* token utility helpers */
+.bg-app { background: var(--bg); }
+.bg-alt { background: var(--bg-alt); }
+.bg-card { background: var(--card); }
+.bg-cardAlt { background: var(--card-alt); }
+.text-app { color: var(--text); }
+.text-2 { color: var(--text-2); }
+.text-3 { color: var(--text-3); }
+.bd { border-color: var(--border); }
+
+/* hero gradient wash (soft, light, premium) */
+.hero-wash {
+  background:
+    radial-gradient(60% 50% at 80% 0%, var(--hero-grad-2), transparent 60%),
+    radial-gradient(70% 60% at 0% 20%, var(--hero-grad-1), transparent 55%),
+    var(--hero-grad-3);
+}
+
+/* designed image placeholder for cards — soft, light-friendly */
+.photo {
+  position: relative;
+  background:
+    radial-gradient(120% 90% at 75% 10%, rgba(124,108,240,0.28), transparent 55%),
+    radial-gradient(90% 90% at 15% 95%, rgba(79,143,240,0.30), transparent 60%),
+    linear-gradient(160deg, #6E8FF2 0%, #7C6CF0 55%, #5566D8 100%);
+  overflow: hidden;
+}
+.photo::after{
+  content:""; position:absolute; inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+}
+
+/* global scroll reveal */
+[data-reveal]{opacity:0;transform:translateY(24px);transition:opacity .7s cubic-bezier(.2,.8,.2,1),transform .7s cubic-bezier(.2,.8,.2,1)}
+[data-reveal].revealed{opacity:1;transform:none}
+@media (prefers-reduced-motion: reduce){[data-reveal]{opacity:1!important;transform:none!important;transition:none!important}}
