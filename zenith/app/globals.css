@@ -106,10 +106,13 @@ body {
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
 }
 
-/* global scroll reveal */
-[data-reveal]{opacity:0;transform:translateY(24px);transition:opacity .7s cubic-bezier(.2,.8,.2,1),transform .7s cubic-bezier(.2,.8,.2,1)}
-[data-reveal].revealed{opacity:1;transform:none}
-@media (prefers-reduced-motion: reduce){[data-reveal]{opacity:1!important;transform:none!important;transition:none!important}}
+/* global scroll reveal.
+   Content is VISIBLE by default (no-JS, SEO, slow hydration all safe).
+   RevealInit marks in-view elements .revealed, then adds .reveal-ready to
+   <html> — only from that moment are unrevealed elements hidden. */
+.reveal-ready [data-reveal]{opacity:0;transform:translateY(18px);transition:opacity .6s cubic-bezier(.2,.8,.2,1),transform .6s cubic-bezier(.2,.8,.2,1)}
+.reveal-ready [data-reveal].revealed{opacity:1;transform:none}
+@media (prefers-reduced-motion: reduce){.reveal-ready [data-reveal]{opacity:1!important;transform:none!important;transition:none!important}}
 
 /* ---- accessibility ---- */
 :focus-visible {

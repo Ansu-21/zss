@@ -12,6 +12,7 @@ export default function Img({ src, alt = "", className = "" }: Props) {
       src={src}
       alt={alt}
       loading="lazy"
+      decoding="async"
       className={className}
       onError={(e) => { e.currentTarget.style.display = "none"; }}
     />

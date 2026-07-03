@@ -71,7 +71,7 @@ const loaderCss = `
 #zload .zl-inner{position:relative;display:flex;flex-direction:column;align-items:center}
 #zload img{height:72px;width:auto;animation:zlPop .7s cubic-bezier(.2,.8,.2,1)}
 #zload .zl-bar{margin-top:30px;height:3px;width:190px;border-radius:9999px;overflow:hidden;background:#E6ECF5}
-#zload .zl-bar i{display:block;height:100%;width:0;border-radius:9999px;background:linear-gradient(90deg,#4F8FF0,#7C6CF0,#FF7A59);animation:zlBar 1.7s cubic-bezier(.4,0,.2,1) forwards}
+#zload .zl-bar i{display:block;height:100%;width:0;border-radius:9999px;background:linear-gradient(90deg,#4F8FF0,#7C6CF0,#FF7A59);animation:zlBar .85s cubic-bezier(.4,0,.2,1) forwards}
 #zload .zl-cap{margin-top:18px;font-size:11px;letter-spacing:.28em;color:#8A95AC;font-family:ui-monospace,monospace}
 .dark #zload .zl-bar{background:#25304B}
 @keyframes zlPop{0%{opacity:0;transform:scale(.92) translateY(10px)}100%{opacity:1;transform:none}}
@@ -83,6 +83,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <head>
+        <link rel="preconnect" href="https://www.zss.co.in" />
+        <link rel="dns-prefetch" href="https://www.zss.co.in" />
         <script dangerouslySetInnerHTML={{ __html: noFlash }} />
         <style dangerouslySetInnerHTML={{ __html: loaderCss }} />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
