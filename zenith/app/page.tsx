@@ -8,6 +8,8 @@ import Certificates from "@/components/Certificates";
 import Founder from "@/components/Founder";
 import SafetyUniverse from "@/components/SafetyUniverse";
 import WhySafety from "@/components/WhySafety";
+import Journey from "@/components/Journey";
+import FAQ from "@/components/FAQ";
 import Footer from "@/components/Footer";
 import Img from "@/components/Img";
 import Link from "next/link";
@@ -71,6 +73,9 @@ export default function Home() {
 
       {/* WHY SAFETY */}
       <WhySafety />
+
+      {/* LEARNING JOURNEY */}
+      <Journey />
 
       {/* COURSE UNIVERSE */}
       <section id="courses" className="bg-app py-24">
@@ -161,6 +166,31 @@ export default function Home() {
 
       {/* CLIENTS */}
       <Clients />
+
+      {/* PLAN TOOLS TEASER */}
+      <section className="bg-app py-20">
+        <div className="mx-auto max-w-[1240px] px-6">
+          <div className="grid gap-5 md:grid-cols-3" data-reveal>
+            {[
+              ["🎓", "Check eligibility", "Answer two questions, see exactly which courses fit you.", "/plan"],
+              ["🧮", "Plan fees & EMI", "See the monthly number before you ever talk money.", "/plan"],
+              ["⚖️", "Compare courses", "IOSH vs OSHA vs diploma — side by side, honestly.", "/plan"],
+            ].map(([icon, h, d, href]) => (
+              <Link key={h} href={href} className="lift group rounded-[22px] border bd bg-card p-7">
+                <div className="text-[28px]">{icon}</div>
+                <div className="display mt-3 text-[19px] font-bold text-app">{h}</div>
+                <p className="mt-1.5 text-[14px] leading-relaxed text-2">{d}</p>
+                <div className="mt-4 text-[14px] font-semibold" style={{ color: "var(--color-violet)" }}>
+                  Try it free <span className="inline-block transition-transform group-hover:translate-x-0.5">→</span>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <FAQ />
 
       {/* CLOSE */}
       <section className="relative overflow-hidden bg-alt py-28 text-center">

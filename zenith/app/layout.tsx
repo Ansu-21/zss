@@ -1,19 +1,49 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import Nav from "@/components/Nav";
 import ContactDock from "@/components/ContactDock";
 import RevealInit from "@/components/RevealInit";
 import LoaderHide from "@/components/LoaderHide";
+import StickyBar from "@/components/StickyBar";
+import MobileTabBar from "@/components/MobileTabBar";
 
 export const metadata: Metadata = {
-  title: "Zenith Safety Solutions — Build a career that keeps the world safe",
+  metadataBase: new URL("https://zss.co.in"),
+  title: {
+    default: "Zenith Safety Solutions — Build a career that keeps the world safe",
+    template: "%s | Zenith Safety Solutions",
+  },
   description:
     "IOSH, OSHA, OTHM, ISO and diploma safety training in Trichy with placement support across India and the Gulf. Globally recognised certifications and real career guidance.",
+  keywords: [
+    "safety course Trichy", "IOSH Managing Safely", "OSHA 30 course India", "fire and safety diploma",
+    "HSE course Tamil Nadu", "safety officer course", "Gulf safety jobs training", "ISO lead auditor course",
+    "NEBOSH alternative", "industrial safety diploma",
+  ],
+  alternates: { canonical: "/" },
   openGraph: {
     title: "Zenith Safety Solutions — Build a career that keeps the world safe",
     description: "Globally recognised safety certifications with India & Gulf placement support. Trichy.",
     type: "website",
+    url: "https://zss.co.in",
+    siteName: "Zenith Safety Solutions",
+    locale: "en_IN",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "Zenith Safety Solutions — Build a career that keeps the world safe",
+    description: "Globally recognised safety certifications with India & Gulf placement support.",
+  },
+  robots: { index: true, follow: true },
+};
+
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#FBFCFE" },
+    { media: "(prefers-color-scheme: dark)", color: "#0E1422" },
+  ],
+  width: "device-width",
+  initialScale: 1,
 };
 
 const schema = {
@@ -21,9 +51,14 @@ const schema = {
   "@type": "EducationalOrganization",
   name: "Zenith Safety Solutions",
   url: "https://zss.co.in",
+  logo: "https://www.zss.co.in/assets/images/logo/logo-dark.png",
   telephone: "+91-9585252099",
+  email: "info@zss.co.in",
+  foundingDate: "2013",
   address: { "@type": "PostalAddress", streetAddress: "1st Floor, Canara Bank ATM Upstairs, Pudukottai Main Road, Subramaniapuram", addressLocality: "Trichy", postalCode: "620020", addressRegion: "Tamil Nadu", addressCountry: "IN" },
   areaServed: ["India", "United Arab Emirates", "Qatar", "Saudi Arabia", "Oman", "Kuwait"],
+  sameAs: ["https://www.zss.co.in"],
+  contactPoint: { "@type": "ContactPoint", telephone: "+91-9585252099", contactType: "admissions", availableLanguage: ["English", "Tamil"] },
 };
 
 const noFlash = `(function(){try{var t=localStorage.getItem('zenith-theme');if(t==='dark'||(!t&&window.matchMedia('(prefers-color-scheme:dark)').matches)){document.documentElement.classList.add('dark')}}catch(e){}})();`;
@@ -53,6 +88,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
       </head>
       <body>
+        <a href="#content" className="skip-link">Skip to content</a>
         <div id="zload">
           <span className="zl-glow" />
           <div className="zl-inner">
@@ -64,8 +100,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         </div>
         <LoaderHide />
         <Nav />
-        {children}
+        <div id="content">{children}</div>
         <ContactDock />
+        <StickyBar />
+        <MobileTabBar />
         <RevealInit />
       </body>
     </html>

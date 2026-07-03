@@ -80,6 +80,7 @@ export default function Nav() {
               </div>
             </div>
 
+            <Link href="/plan" className="transition-colors hover:text-app">Fees &amp; EMI</Link>
             <Link href="/industrial-training" className="transition-colors hover:text-app">Industrial Training</Link>
             <Link href="/gallery" className="transition-colors hover:text-app">Gallery</Link>
             <Link href="/contact" className="transition-colors hover:text-app">Contact</Link>
@@ -141,6 +142,7 @@ export default function Nav() {
               </div>
             )}
 
+            <Link href="/plan" onClick={() => setOpen(false)} className="rounded-xl px-4 py-3.5 text-[17px] font-medium text-app hover:bg-[var(--card)]">Fees &amp; EMI</Link>
             <Link href="/industrial-training" onClick={() => setOpen(false)} className="rounded-xl px-4 py-3.5 text-[17px] font-medium text-app hover:bg-[var(--card)]">Industrial Training</Link>
             <Link href="/gallery" onClick={() => setOpen(false)} className="rounded-xl px-4 py-3.5 text-[17px] font-medium text-app hover:bg-[var(--card)]">Gallery</Link>
             <Link href="/contact" onClick={() => setOpen(false)} className="rounded-xl px-4 py-3.5 text-[17px] font-medium text-app hover:bg-[var(--card)]">Contact</Link>

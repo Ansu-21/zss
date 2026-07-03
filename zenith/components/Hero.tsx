@@ -53,6 +53,23 @@ export default function Hero() {
               Explore courses
               <span className="transition-transform group-hover:translate-x-0.5">→</span>
             </Link>
+            <a href="https://wa.me/919585252099?text=Hi%20Zenith%2C%20I%27d%20like%20to%20book%20a%20free%20counselling%20session."
+              className="text-[15px] font-medium underline-offset-4 hover:underline" style={{ color: "var(--color-violet)" }}>
+              Book free counselling
+            </a>
+          </div>
+
+          {/* trust indicators */}
+          <div className="mt-10">
+            <div className="mono text-[11px] tracking-[0.16em] text-3">CERTIFICATIONS EMPLOYERS NAME DIRECTLY</div>
+            <div className="mt-3 flex flex-wrap items-center gap-2.5">
+              {["IOSH", "OSHA", "OTHM", "ISO", "NSDI"].map((b) => (
+                <span key={b} className="shine mono rounded-full border bd bg-card px-4 py-1.5 text-[12.5px] font-semibold tracking-[0.06em] text-2">
+                  {b}
+                </span>
+              ))}
+              <span className="ml-1 text-[13px] text-3">since 2013</span>
+            </div>
           </div>
         </div>
 

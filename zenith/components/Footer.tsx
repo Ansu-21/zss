@@ -31,6 +31,8 @@ export default function Footer() {
             <Link href="/courses" className="text-2 hover:text-app">Courses</Link>
             <Link href="/industrial-training" className="text-2 hover:text-app">Industrial Training</Link>
             <Link href="/gallery" className="text-2 hover:text-app">Gallery</Link>
+            <Link href="/plan" className="text-2 hover:text-app">Fees &amp; EMI</Link>
+            <Link href="/quiz" className="text-2 hover:text-app">Safety Quiz</Link>
             <Link href="/contact" className="text-2 hover:text-app">Contact</Link>
           </div>
         </div>

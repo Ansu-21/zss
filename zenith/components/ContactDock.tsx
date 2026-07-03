@@ -81,7 +81,7 @@ export default function ContactDock() {
     <>
       {/* CHAT PANEL */}
       <div
-        className={`fixed bottom-24 right-5 z-[120] w-[min(380px,calc(100vw-2.5rem))] origin-bottom-right transition-all duration-300 sm:right-6 ${chat ? "pointer-events-auto scale-100 opacity-100" : "pointer-events-none scale-95 opacity-0"}`}
+        className={`fixed bottom-[164px] right-5 z-[120] w-[min(380px,calc(100vw-2.5rem))] origin-bottom-right transition-all duration-300 sm:right-6 lg:bottom-24 ${chat ? "pointer-events-auto scale-100 opacity-100" : "pointer-events-none scale-95 opacity-0"}`}
       >
         <div className="flex h-[520px] max-h-[calc(100vh-7rem)] flex-col overflow-hidden rounded-[24px] border bd shadow-[0_30px_80px_-24px_rgba(20,30,60,0.45)]" style={{ background: "var(--card)" }}>
           {/* header */}
@@ -161,7 +161,7 @@ export default function ContactDock() {
       </div>
 
       {/* QUICK ACTIONS (FAB expanded) */}
-      <div className={`fixed bottom-24 right-5 z-[110] flex flex-col items-end gap-2.5 transition-all duration-300 sm:right-6 ${open && !chat ? "pointer-events-auto translate-y-0 opacity-100" : "pointer-events-none translate-y-2 opacity-0"}`}>
+      <div className={`fixed bottom-[164px] right-5 z-[110] flex flex-col items-end gap-2.5 transition-all duration-300 sm:right-6 lg:bottom-24 ${open && !chat ? "pointer-events-auto translate-y-0 opacity-100" : "pointer-events-none translate-y-2 opacity-0"}`}>
         {[
           ["Start a chat", "💬", () => { setChat(true); setOpen(false); }, "var(--color-violet)"],
           ["WhatsApp", "🟢", () => { window.location.href = "https://wa.me/919585252099"; }, "#25D366"],
@@ -178,7 +178,7 @@ export default function ContactDock() {
       <button
         onClick={() => { if (chat) { setChat(false); } else { setOpen((v) => !v); } }}
         aria-label="Contact us"
-        className="fixed bottom-5 right-5 z-[130] grid h-16 w-16 place-items-center rounded-full text-white shadow-[0_16px_40px_-10px_rgba(124,108,240,0.6)] transition-transform hover:scale-105 sm:right-6"
+        className="fixed bottom-[88px] right-5 z-[130] grid h-16 w-16 place-items-center rounded-full text-white shadow-[0_16px_40px_-10px_rgba(124,108,240,0.6)] transition-transform hover:scale-105 sm:right-6 lg:bottom-5"
         style={{ background: "linear-gradient(135deg, var(--color-sky), var(--color-violet))" }}
       >
         {/* pulse ring */}
