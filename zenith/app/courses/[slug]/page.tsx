@@ -15,6 +15,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   return {
     title: `${c.title} — Course, Careers & Salary | Zenith Safety Solutions`,
     description: `${c.title} in Trichy. ${c.short} Careers: ${c.outcomes.join(", ")}. Eligibility, duration, certification and placement support.`,
+    alternates: { canonical: `/courses/${slug}` },
   };
 }
 
@@ -29,12 +30,37 @@ export default async function CoursePage({ params }: { params: Promise<{ slug: s
     "@type": "Course",
     name: c.title,
     description: c.blurb,
+    url: `https://zss.co.in/courses/${c.slug}`,
     provider: { "@type": "EducationalOrganization", name: "Zenith Safety Solutions", sameAs: "https://zss.co.in" },
+    hasCourseInstance: {
+      "@type": "CourseInstance",
+      courseMode: c.mode.toLowerCase().includes("online") ? ["online", "onsite"] : ["onsite"],
+      location: { "@type": "Place", name: "Zenith Safety Solutions, Trichy", address: "Trichy, Tamil Nadu, India" },
+    },
+    occupationalCredentialAwarded: c.level || c.title,
   };
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: "https://zss.co.in/" },
+      { "@type": "ListItem", position: 2, name: "Courses", item: "https://zss.co.in/courses" },
+      { "@type": "ListItem", position: 3, name: c.title, item: `https://zss.co.in/courses/${c.slug}` },
+    ],
+  };
+  const faqSchema = c.faqs.length
+    ? {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        mainEntity: c.faqs.map((f) => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a } })),
+      }
+    : null;
 
   return (
     <main className="mx-auto max-w-[1180px] px-6 pb-24">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(courseSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+      {faqSchema && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />}
       <CourseTracker slug={c.slug} />
 
       {/* breadcrumb */}

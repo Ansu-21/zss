@@ -110,3 +110,46 @@ body {
 [data-reveal]{opacity:0;transform:translateY(24px);transition:opacity .7s cubic-bezier(.2,.8,.2,1),transform .7s cubic-bezier(.2,.8,.2,1)}
 [data-reveal].revealed{opacity:1;transform:none}
 @media (prefers-reduced-motion: reduce){[data-reveal]{opacity:1!important;transform:none!important;transition:none!important}}
+
+/* ---- accessibility ---- */
+:focus-visible {
+  outline: 2px solid var(--color-violet);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+.skip-link {
+  position: fixed;
+  left: 16px;
+  top: -60px;
+  z-index: 300;
+  padding: 10px 18px;
+  border-radius: 9999px;
+  background: var(--color-ink);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  transition: top .2s ease;
+}
+.skip-link:focus-visible { top: 16px; }
+
+/* room for the mobile tab bar so nothing is hidden behind it */
+@media (max-width: 1023px) {
+  body { padding-bottom: calc(64px + env(safe-area-inset-bottom)); }
+}
+
+/* gentle card lift */
+.lift { transition: transform .35s cubic-bezier(.2,.8,.2,1), box-shadow .35s cubic-bezier(.2,.8,.2,1); }
+.lift:hover { transform: translateY(-4px); box-shadow: 0 30px 60px -28px rgba(80,100,200,0.35); }
+
+/* certificate / badge shine sweep */
+.shine { position: relative; overflow: hidden; }
+.shine::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.35) 50%, transparent 60%);
+  transform: translateX(-120%);
+  pointer-events: none;
+}
+.shine:hover::before { animation: shineSweep 1s ease; }
+@keyframes shineSweep { to { transform: translateX(120%); } }
