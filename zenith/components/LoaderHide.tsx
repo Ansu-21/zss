@@ -6,8 +6,13 @@ export default function LoaderHide() {
   useEffect(() => {
     const el = document.getElementById("zload");
     if (!el) return;
-    const t1 = setTimeout(() => el.classList.add("hide"), 1500);
-    const t2 = setTimeout(() => el.classList.add("gone"), 2200);
+    // Brand moment on the first visit only — returning within the same
+    // session, get straight to the content.
+    let seen = false;
+    try { seen = !!sessionStorage.getItem("zenith-seen"); sessionStorage.setItem("zenith-seen", "1"); } catch {}
+    const hideDelay = seen ? 0 : 900;
+    const t1 = setTimeout(() => el.classList.add("hide"), hideDelay);
+    const t2 = setTimeout(() => el.classList.add("gone"), hideDelay + 650);
     return () => { clearTimeout(t1); clearTimeout(t2); };
   }, []);
   return null;
