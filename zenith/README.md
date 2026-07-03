@@ -1,7 +1,7 @@
 # Zenith Safety Solutions — website
 
 Premium, concept-led site. Light + dark mode (toggle in nav). Sky-blue trust + violet aspiration + coral CTA palette.
-
+<!-- hello -->
 ## Run
     npm install
     npm run dev      # http://localhost:3000
